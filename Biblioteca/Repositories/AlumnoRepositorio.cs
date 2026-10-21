@@ -17,7 +17,7 @@ namespace Biblioteca.Repositories
             {
                 conn.Open();
 
-                string query = "SELECT * FROM alumns ORDER BY apellidos, nombre";
+                string query = "SELECT * FROM alumnos ORDER BY apellidos, nombre"; // error al ingresar la tabla de alumnos
 
                 MySqlCommand comm = new MySqlCommand(query, conn);
                 MySqlDataReader dr = comm.ExecuteReader();
@@ -31,7 +31,7 @@ namespace Biblioteca.Repositories
                         alumno.ID = Convert.ToInt32(dr["id"].ToString());
                         alumno.Matricula = dr["matricula"].ToString();
                         alumno.Nombre = dr["nombre"].ToString();
-                        alumno.Apellidos = dr["apellido"].ToString();
+                        alumno.Apellidos = dr["apellidos"].ToString(); // error al leer el campo "apellidos" de la tabla de alumnos add(s )
                         alumno.Carrera = dr["carrera"].ToString();
                         alumno.Activo = Convert.ToInt32(dr["activo"].ToString()) == 1;
 
@@ -157,8 +157,9 @@ namespace Biblioteca.Repositories
             {
                 conn.Open();
 
+                // Alto agregra la (s) en apellidos para que busque correctamente
                 string query = "SELECT * FROM alumnos " +
-                               "WHERE CONCAT(nombre, ' ', apellido) LIKE @nombre " +
+                               "WHERE CONCAT(nombre, ' ', apellidos) LIKE @nombre " +
                                "ORDER BY apellidos, nombre";
 
                 MySqlCommand comm = new MySqlCommand(query, conn);

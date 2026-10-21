@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using MySql.Data.MySqlClient;
+using MySql.Data;
 
 using Biblioteca.Interfaces;
 using Biblioteca.Models;

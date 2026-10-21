@@ -175,7 +175,7 @@ namespace Biblioteca.Forms
                 libro.Titulo = txtTitulo.Text.Trim();
                 libro.IDAutor = Convert.ToInt32(cmbAutor.SelectedValue);
                 libro.IDCategoria = Convert.ToInt32(cmbCategoria.SelectedValue);
-                libro.Existencia = txtExistencia.Text;
+                libro.Existencia = Convert.ToInt32(txtExistencia.Text); // Agregra el parametro de Convertir a int
                 libro.Activo = chkActivo.Checked;
 
                 if (repo.Agregar(libro))
@@ -360,7 +360,7 @@ namespace Biblioteca.Forms
                 }
                 else
                 {
-                    List<Libro> lista = repo.FiltrarPorCategoria(cmbFiltroCategoria.SelectedValue);
+                    List<Libro> lista = repo.FiltrarPorCategoria(idCategoria); // Se encontraba mal declarado 
                     MostrarLista(lista);
                 }
             }

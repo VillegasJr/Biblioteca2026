@@ -1,1 +1,37 @@
 ************CheckList**********************
+
+------------------------- Arreglar errores de compilacion en el proyecto -------------------------
+* Archivo de LibroRepositorio, se agrego la libreria (Using del MySql.Data).
+
+* Archivo de FrmLibros en el metodo de btnAgregar_Click faltaba convertir el valor de txtExistencia a int, se agrego la conversion.
+* Mala declaracion de objeto en el metodo de btnFiltrar_Click, donde el objeto de List<Libro> lista = repo.FiltrarPorCategoria(idCategoria);, 
+estaba declarado como List<Libro> lista = repo.FiltrarPorCategoria(cmbFiltroCategoria.SelectedValue);, 
+se cambio a List<Libro> lista = repo.FiltrarPorCategoria(idCategoria);
+
+* Dentro del archivo de FrmPrestamos, en el metodo de btnRegistrar_Click, Se agrego la conversion de txt.Cantidad.Text a int, ya que estaba generando error de compilacion.
+también se agrego la conversion de dtpFechaPrestamo.Text a DateTime, ya que estaba generando error de compilacion y por ultimo al querere pasar por el filtro de
+"if" en "repo.Registrar" falto gregar dentro de ella el parametro de detalles ya que solo contaba con uno. 
+-----------------------------------------------------------------------------------------------------
+
+* Correccion a la conexion con la base de datos.
+
+-----------------------------------------------------------------------------------------------------
+
+* Errores dentro del archivo de AlumnoRepositorio, al querer hacer las connsultas de la base de datos en relacion a la tabla de alumnos 
+y la declaracion de lectura con el campo de apellido. 
+
+-----------------------------------------------------------------------------------------------------
+
+* Dentro del FormAlumno, al hacer la seleccion de un alumno para que se muestre en el apartado de los TextBox, se duplicaba el valor Matricula
+en el TextBox de Matricula y en el TextBox de Nombre, se cambio la declaracion de "txtNombre.Text = alumno.Matricula;" a "txtNombre.Text = alumno.Nombre;"
+
+* Dentro del FormAlumno, al ya hacer la modificacion (update) de un alumno, se estaba haciendo uso de otro metodo que ere "Agregra", 
+se cambio a "Modificar" para que haga la modificacion del alumno seleccionado.
+
+* 
+
+* Hacer busqueda de Nombre en "apellidos" de alumno, se estaba haciendo uso de otro metodo que no era el correcto. 
+
+* 
+
+-----------------------------------------------------------------------------------------------------

@@ -59,7 +59,7 @@ namespace Biblioteca.Forms
 
             idSeleccionado = alumno.ID;
             txtMatricula.Text = alumno.Matricula;
-            txtNombre.Text = alumno.Matricula;
+            txtNombre.Text = alumno.Nombre; // Error de mostrar la matricula en vez del nombre del alumno
             txtApellidos.Text = alumno.Apellidos;
             txtCarrera.Text = alumno.Carrera;
             chkActivo.Checked = alumno.Activo;
@@ -160,7 +160,7 @@ namespace Biblioteca.Forms
                 alumno.Carrera = txtCarrera.Text.Trim();
                 alumno.Activo = chkActivo.Checked;
 
-                if (repo.Agregar(alumno))
+                if (repo.Modificar(alumno)) // Mala declaracion de la variable al modificar el alumno, se estaba haciendo uso del metodo de Agregar 
                 {
                     MessageBox.Show("Alumno modificado correctamente.",
                         "Biblioteca", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -269,7 +269,7 @@ namespace Biblioteca.Forms
             try
             {
                 AlumnoRepositorio repo = new AlumnoRepositorio();
-                List<Alumno> lista = repo.BuscarPorMatricula(nombre);
+                List<Alumno> lista = repo.BuscarPorNombre(nombre); // Esta haciendo uso de Otro metodo de busqueda
 
                 MostrarLista(lista);
 
