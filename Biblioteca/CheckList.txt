@@ -28,10 +28,25 @@ en el TextBox de Matricula y en el TextBox de Nombre, se cambio la declaracion d
 * Dentro del FormAlumno, al ya hacer la modificacion (update) de un alumno, se estaba haciendo uso de otro metodo que ere "Agregra", 
 se cambio a "Modificar" para que haga la modificacion del alumno seleccionado.
 
-* 
-
 * Hacer busqueda de Nombre en "apellidos" de alumno, se estaba haciendo uso de otro metodo que no era el correcto. 
 
-* 
+============================= Segundo Dia de Solucion de Errores =====================================
 
------------------------------------------------------------------------------------------------------
+* Errror al querer hacer registro de un nuevo libro en el "FrmLibros", en el archivo de "LibroRepositorio" en el metodo de "Agregar", 
+se cambio la declaracion de "comm.Parameters.AddWithValue("@existencias", libro.Existencia);", libro.Existencia);" 
+a "comm.Parameters.AddWithValue("@existencia", libro.Existencia);" ya que estaba generando error al querer registrar el libro.
+
+* Error al Modificar el Libro se invierte al hacer la modificación en el "isbn" se modifica al Nombre y el Nombre se modifica al ISBN, 
+se cambio la declaracion del Metodo de "Modificar" en el archivo de "LibroRepositorio" donde estaba declarado como:
+                comm.Parameters.AddWithValue("@isbn", libro.Titulo); <-- Aquie el Error 
+                comm.Parameters.AddWithValue("@titulo", libro.ISBN); <-- Aquie el Error
+
+* En el bóton de "btnBuscarTitulo_Click" se estaba llamado otro metodo que no era el correcto, 
+se cambio de "repo.BuscarPorISBN(titulo);" a "repo.BuscarPorTitulo(titulo);"
+
+* En el Metodo de "BuscarPorTitulo", al hacer la lectura del MySQl DataReader se hacia doble lectura del "id", en el apartado de 
+libro.Existencia = Convert.ToInt32(dr["existencia"].ToString());
+
+* Error en el Metodo de "FiltrarPorCategoria", se estaba haciendo la consulta al MySql con nombre de tabla que no existia "existencias" cuando es "existencia".
+
+* 

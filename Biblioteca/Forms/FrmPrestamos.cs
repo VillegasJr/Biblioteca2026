@@ -137,6 +137,7 @@ namespace Biblioteca.Forms
                 detalles.Add(detalle);
 
                 IPrestamo repo = new PrestamoRepositorio();
+                // PrestamoRepositorio repo = new PrestamoRepositorio();
 
                 if (repo.Registrar(prestamo, detalles)) // Falto agregar el parametro de detalles al método Registrar
                 {

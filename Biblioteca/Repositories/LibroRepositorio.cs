@@ -149,7 +149,7 @@ namespace Biblioteca.Repositories
                         libro.Titulo = dr["titulo"].ToString();
                         libro.IDAutor = Convert.ToInt32(dr["id_autor"].ToString());
                         libro.IDCategoria = Convert.ToInt32(dr["id_categoria"].ToString());
-                        libro.Existencia = Convert.ToInt32(dr["id"].ToString());
+                        libro.Existencia = Convert.ToInt32(dr["existencia"].ToString()); // Error al llamar el Parametro no debido (id), en vez de (existencia) 
                         libro.Activo = Convert.ToInt32(dr["activo"].ToString()) == 1;
                         libro.NombreAutor = dr["autor_nombre"].ToString() + " " +
                                             dr["autor_apellidos"].ToString();
@@ -237,7 +237,7 @@ namespace Biblioteca.Repositories
 
                 string query = SelectLibros +
                                "WHERE l.id_categoria = @id_categoria " +
-                               "AND l.existencias > 0 " +
+                               "AND l.existencia > 0 " + // Error al filtrar por categoria, se agrego la condicion de existencia"(s)"
                                "ORDER BY l.titulo";
 
                 MySqlCommand comm = new MySqlCommand(query, conn);
@@ -344,7 +344,7 @@ namespace Biblioteca.Repositories
                 comm.Parameters.AddWithValue("@titulo", libro.Titulo);
                 comm.Parameters.AddWithValue("@id_autor", libro.IDAutor);
                 comm.Parameters.AddWithValue("@id_categoria", libro.IDCategoria);
-                comm.Parameters.AddWithValue("@existencias", libro.Existencia);
+                comm.Parameters.AddWithValue("@existencia", libro.Existencia); // Error al escribir el paremetro se agrego una (S)
                 comm.Parameters.AddWithValue("@activo", libro.Activo ? 1 : 0);
 
                 int filas = comm.ExecuteNonQuery();
@@ -376,8 +376,8 @@ namespace Biblioteca.Repositories
 
                 MySqlCommand comm = new MySqlCommand(query, conn);
 
-                comm.Parameters.AddWithValue("@isbn", libro.Titulo);
-                comm.Parameters.AddWithValue("@titulo", libro.ISBN);
+                comm.Parameters.AddWithValue("@isbn", libro.ISBN); // Error al hacer la modificacion del paremetro incorrecto (Invertido)
+                comm.Parameters.AddWithValue("@titulo", libro.Titulo); // Error de hacer la modificacion del paremetro incorrecto (Invertido)
                 comm.Parameters.AddWithValue("@id_autor", libro.IDAutor);
                 comm.Parameters.AddWithValue("@id_categoria", libro.IDCategoria);
                 comm.Parameters.AddWithValue("@existencia", libro.Existencia);

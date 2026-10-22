@@ -297,7 +297,7 @@ namespace Biblioteca.Forms
             try
             {
                 LibroRepositorio repo = new LibroRepositorio();
-                List<Libro> lista = repo.BuscarPorISBN(titulo);
+                List<Libro> lista = repo.BuscarPorTitulo(titulo);// Error de Llamada al método "BuscarPorISBN" en lugar de "BuscarPorTitulo"
 
                 MostrarLista(lista);
 
